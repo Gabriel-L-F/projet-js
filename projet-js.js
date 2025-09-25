@@ -1,29 +1,20 @@
 const apiKey = "9f412309bd6e72eefbbbc660";
 const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`;
 
-function enregistrerHistorique(montant, source, cible, conversion) {
-  const date = new Date().toLocaleString(); 
-  const ligne = `Date : ${date} : ${montant} ${source} = ${conversion} ${cible}`;
+function enregistrerHistorique(conversion) {
+            let historique = JSON.parse(localStorage.getItem("historique")) || [];
+            historique.push(conversion);
+            localStorage.setItem("historique", JSON.stringify(historique));
+            afficherHistorique();
+        }
 
-  let historiqueData = JSON.parse(localStorage.getItem("historiqueConversions")) || [];
-  historiqueData.unshift(ligne); 
-  historiqueData = historiqueData.slice(0, 10); 
-  localStorage.setItem("historiqueConversions", JSON.stringify(historiqueData));
-
-  afficherHistorique();
-}
-
-function afficherHistorique() {
-  const historique = document.getElementById("historique");
-  historique.innerHTML = "";
-
-  const historiqueData = JSON.parse(localStorage.getItem("historiqueConversions")) || [];
-  historiqueData.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    historique.appendChild(li);
-  });
-}
-
-afficherHistorique();
-
+        function afficherHistorique() {
+            const historique = JSON.parse(localStorage.getItem("historique")) || [];
+            const ul = document.getElementById("historique");
+            ul.innerHTML = "";
+            historique.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                ul.appendChild(li);
+            });
+        }
