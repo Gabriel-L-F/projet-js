@@ -28,3 +28,16 @@ async function chargerDevises() {
             }
         }
         chargerDevises();
+function convertir() {
+    const  source = document.getElementById("source").value
+    const cible = document.getElementById("cible").value
+    const montant = document.getElementById("montant").value
+
+    if (source == cible) {
+        document.getElementById("resultat").textContent = "Le taux de convertion est 1:1";
+        return;
+    }
+    else {
+        document.getElementById("resultat").textContent = source;
+    }
+}
