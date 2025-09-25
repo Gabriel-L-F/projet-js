@@ -28,7 +28,7 @@ async function chargerDevises() {
             }
         }
         chargerDevises();
-function convertir() {
+async function convertir() {
     const  source = document.getElementById("source").value
     const cible = document.getElementById("cible").value
     const montant = document.getElementById("montant").value
@@ -38,6 +38,9 @@ function convertir() {
         return;
     }
     else {
-        document.getElementById("resultat").textContent = source;
+        const response = await fetch(url);
+        const data = await response.json(); 
+        document.getElementById("resultat").textContent = data;
     }
+
 }
