@@ -43,8 +43,8 @@ async function convertir() {
         const tauxS = data.conversion_rates[source]; 
         const tauxC = data.conversion_rates[cible];
         const result = montant * (tauxC/tauxS);
-        document.getElementById("resultat").textContent = `${result} ${cible}`;
+        document.getElementById("resultat").textContent = `${montant} ${source} vaut ${result} ${cible}`;
 
     }
-
+    enregistrerHistorique()
 }
