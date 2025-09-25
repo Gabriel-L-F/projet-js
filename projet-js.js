@@ -40,8 +40,10 @@ async function convertir() {
     else {
         const response = await fetch(url);
         const data = await response.json(); 
-        const tauxS = data.conversion_rates.source; 
-        document.getElementById("resultat").textContent = "Le taux de convertion est 1:1";
+        const tauxS = data.conversion_rates[source]; 
+        const tauxC = data.conversion_rates[cible];
+        const result = montant * (tauxC/tauxS);
+        document.getElementById("resultat").textContent = `${result} ${cible}`;
 
     }
 
